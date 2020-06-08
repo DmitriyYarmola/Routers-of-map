@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './App.sass'
-import { SimpleMap } from './Components/Features/SimpleMap/Templates'
+import { Page } from './Components/Pages/Page'
 
 export function App() {
-	return <SimpleMap />
+	return <Page />
 }

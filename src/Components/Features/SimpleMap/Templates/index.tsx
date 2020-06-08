@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import GoogleMapReact from 'google-map-react'
-import { Marker } from '../../../UI/Atoms/Marker'
+import { Marker } from '../../../UI/Atoms/index'
 import { API_KEY } from '../../../services/API/key'
 
 export const SimpleMap = () => {
@@ -26,7 +26,7 @@ export const SimpleMap = () => {
 				defaultZoom={zoom}
 				options={getMapOptions}
 			>
-				<Marker lat={30} lng={30} name='My Marker' color='yellow'/>
+				<Marker lat={30} lng={30} name='My Marker' color='yellow' />
 			</GoogleMapReact>
 		</div>
 	)

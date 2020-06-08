@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { InfoWindow } from './../InfoWindow'
+import { InfoWindow } from '../../Molecules/InfoWindow'
 import './style.sass'
 
 type PropsType = {
