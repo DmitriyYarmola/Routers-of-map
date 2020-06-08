@@ -6,6 +6,9 @@ type PropsType = {
 	className: string
 	placeholder: string
 	helperContent: string
+	value: string
+	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+	onKeyPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void
 }
 
 export const Input: React.FC<PropsType> = ({
@@ -14,6 +17,9 @@ export const Input: React.FC<PropsType> = ({
 	className,
 	placeholder,
 	helperContent,
+	value,
+	onChange,
+	onKeyPress,
 }) => {
 	return (
 		<div className='row'>
@@ -24,6 +30,9 @@ export const Input: React.FC<PropsType> = ({
 					className={className}
 					autoComplete='off'
 					placeholder={placeholder}
+					onChange={onChange}
+					value={value}
+					onKeyPress={onKeyPress}
 				/>
 				<span className='helper-text'>{helperContent}</span>
 			</div>

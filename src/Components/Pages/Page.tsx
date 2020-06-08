@@ -1,7 +1,7 @@
 import React from 'react'
 import { InputForAddPoint } from './../Features/InputForAddPoint'
 import { SimpleMap } from '../Features/SimpleMap/Templates'
-import { Point } from '../UI/Atoms'
+import { Points } from '../Features/Points'
 import './style.sass'
 
 export const Page = () => {
@@ -12,7 +12,7 @@ export const Page = () => {
 					<InputForAddPoint />
 				</div>
 				<div className='list-point'>
-					<Point cityName={'test'} />
+					<Points />
 				</div>
 			</div>
 			<div className='map'>
