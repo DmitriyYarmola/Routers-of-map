@@ -1,5 +1,9 @@
 import React from 'react'
 import './style.sass'
-export const InfoWindow = () => {
-	return <div className='info-window'>Info window</div>
+
+type PropsType = {
+	name: string 
+}
+export const InfoWindow:React.FC<PropsType> = ({name}) => {
+	return <div className='info-window'>{name}</div>
 }

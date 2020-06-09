@@ -1,11 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import GoogleMapReact from 'google-map-react'
 import { Marker } from '../../../UI/Atoms/index'
-import { API_KEY } from '../../../services/API/key'
+import { API_KEY } from '../../../../services/API/key'
+import { CoordinateType } from '../../../../services/API/API'
+import { useSelector } from 'react-redux'
+import { AppStateType } from '../../Model/store'
+import { useGeolocation } from '../../UserGeolocation'
 
-export const SimpleMap = () => {
-	const [center, setCenter] = useState({ lat: 30, lng: 30 })
+type PropsType = {
+	geolocation?: CoordinateType
+}
+export const SimpleMap:React.FC<PropsType> = ({geolocation}) => {
+	const points = useSelector((state: AppStateType) => state.MapReducer.points)
+	const [center, setCenter] = useState(geolocation)
 	const [zoom, setZoom] = useState(11)
+	
+	const Markers = points.map(point => <Marker lat={point.geometry.location.lat} lng={point.geometry.location.lng} name={point.formatted_address} color='yellow'/>)
 
 	const getMapOptions = (maps: any) => {
 		return {
@@ -26,7 +36,8 @@ export const SimpleMap = () => {
 				defaultZoom={zoom}
 				options={getMapOptions}
 			>
-				<Marker lat={30} lng={30} name='My Marker' color='yellow' />
+				
+				{Markers}
 			</GoogleMapReact>
 		</div>
 	)

@@ -1,21 +1,26 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import { useDispatch } from 'react-redux'
-import nextId from 'react-id-generator'
-import { Actions } from './../Model/actions'
 import { Input } from '../../UI/Atoms/index'
+import { getGeoLocOfPoint } from '../Model/thunks'
 
 export const InputForAddPoint = () => {
 	const [content, setContent] = useState('')
-
 	const dispatch = useDispatch()
 
 	const onChangeContent = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setContent(e.currentTarget.value)
 	}
 
+	const onGetGeoLocOfPoint = useCallback(
+		(content) => {
+			dispatch(getGeoLocOfPoint(content))
+		},
+		[dispatch],
+	)
+
 	const onKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
 		if (e.key === 'Enter') {
-			dispatch(Actions.addPoint({ value: content, id: nextId() }))
+			onGetGeoLocOfPoint(content)
 			setContent('')
 		}
 	}
