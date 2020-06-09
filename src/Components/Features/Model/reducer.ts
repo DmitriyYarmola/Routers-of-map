@@ -4,7 +4,8 @@ import { LocationInfoType, CoordinateType } from "../../../services/API/API";
 
 let initialState = {
   points: [] as LocationInfoType[],
-  geolocation: null as CoordinateType | null
+  geolocation: null as CoordinateType | null,
+  currentPoint: null as LocationInfoType | null
 };
 
 type InitialStateType = typeof initialState;
@@ -15,6 +16,7 @@ export const Reducer = (state = initialState, action: ActionsType): InitialState
       return {
         ...state,
         points: [...state.points, action.payload],
+        currentPoint: action.payload
       };
     case DELETE_POINT:
       return {
