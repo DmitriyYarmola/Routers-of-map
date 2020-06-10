@@ -1,9 +1,9 @@
 import React, { useState, useCallback } from 'react'
 import { useDispatch } from 'react-redux'
-import { Input } from '../../UI/Atoms/index'
+import { Input } from '../../../UI/Atoms/index'
 import { getGeoLocOfPoint } from '../Model/thunks'
 
-export const InputForAddPoint = () => {
+export const SearchLocation = () => {
 	const [content, setContent] = useState('')
 	const dispatch = useDispatch()
 

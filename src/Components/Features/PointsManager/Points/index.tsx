@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { AppStateType } from '../Model/store'
+import { AppStateType } from '../../Store/store'
 import { Point } from './Point'
 
 export const Points = () => {

@@ -1,4 +1,4 @@
-import { InferActionsType } from '../../Model/store'
+import { InferActionsType } from '../../Store/store'
 import { CoordinateType } from '../../../../services/API/API'
 
 export const GET_GEOLOCATION = 'GET_GEOLOCATION'

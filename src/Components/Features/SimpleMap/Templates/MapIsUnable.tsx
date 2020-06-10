@@ -4,7 +4,7 @@ import { Marker } from '../../../UI/Atoms/index'
 import { API_KEY } from '../../../../services/API/key'
 import { CoordinateType } from '../../../../services/API/API'
 import { useSelector } from 'react-redux'
-import { AppStateType } from '../../Model/store'
+import { AppStateType } from '../../Store/store'
 import GoogleMapReact from 'google-map-react'
 
 type PropsType = {

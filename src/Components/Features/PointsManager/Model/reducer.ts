@@ -1,6 +1,6 @@
 import { ADD_POINT, DELETE_POINT } from './actions'
 import { ActionsType } from './actions'
-import { LocationInfoType } from '../../../services/API/API'
+import { LocationInfoType } from '../../../../services/API/API'
 
 let initialState = {
 	points: [] as LocationInfoType[],

@@ -1,11 +1,11 @@
 import React, { useEffect, useCallback } from 'react'
-import { InputForAddPoint } from './../Features/InputForAddPoint'
-import { Points } from '../Features/Points/index'
+import { SearchLocation } from '../Features/PointsManager/SearchLocation'
+import { Points } from '../Features/PointsManager/Points'
 import './style.sass'
 import { useDispatch, useSelector } from 'react-redux'
 import { Actions } from '../Features/SimpleMap/Model/actions'
 import { CoordinateType } from '../../services/API/API'
-import { AppStateType } from '../Features/Model/store'
+import { AppStateType } from '../Features/Store/store'
 import { getRandomNumber } from './../Features/RandomNumber/index'
 import { Map } from '../Features/SimpleMap/Templates'
 export const Page = () => {
@@ -38,13 +38,12 @@ export const Page = () => {
 		if (!navigator.geolocation) alert('Geolocation is not supported by your browser')
 		else navigator.geolocation.getCurrentPosition(success, error)
 	}, [onSetGeoloccation])
-
 	return (
 		geolocation && (
 			<div className='page_points-map'>
 				<div className='points'>
 					<div className='add-point'>
-						<InputForAddPoint />
+						<SearchLocation />
 					</div>
 					<div className='list-point'>
 						<Points />

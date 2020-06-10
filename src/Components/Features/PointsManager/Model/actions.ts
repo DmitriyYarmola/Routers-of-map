@@ -1,5 +1,5 @@
-import { InferActionsType } from './store'
-import { LocationInfoType } from '../../../services/API/API'
+import { InferActionsType } from '../../Store/store'
+import { LocationInfoType } from '../../../../services/API/API'
 export const ADD_POINT = 'ADD_POINT'
 export const DELETE_POINT = 'DELETE_POINT'
 

@@ -4,7 +4,7 @@ import './global.sass'
 import { App } from './App'
 import { Provider } from 'react-redux'
 import * as serviceWorker from './serviceWorker'
-import { store } from './Components/Features/Model/store'
+import { store } from './Components/Features/Store/store'
 
 ReactDOM.render(
 	<Provider store={store}>
