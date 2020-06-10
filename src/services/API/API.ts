@@ -36,7 +36,7 @@ export type LocationInfoType = {
 	geometry: GeometryType
 	place_id: string
 	types: Array<string>
-}	
+}
 
 export type GetCoordinateOfPoint = {
 	results: LocationInfoType[]
@@ -44,6 +44,12 @@ export type GetCoordinateOfPoint = {
 
 export const PointAPI = {
 	getCoordinateOfPoint: (location: string) => {
-		 return axios.get<GetCoordinateOfPoint>(`https://maps.googleapis.com/maps/api/geocode/json?address=${location.split(' ').join('+')}&key=${API_KEY}`).then(response => response.data.results)
+		return axios
+			.get<GetCoordinateOfPoint>(
+				`https://maps.googleapis.com/maps/api/geocode/json?address=${location
+					.split(' ')
+					.join('+')}&key=${API_KEY}`
+			)
+			.then((response) => response.data.results)
 	},
 }

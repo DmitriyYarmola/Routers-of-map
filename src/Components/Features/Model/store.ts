@@ -1,9 +1,11 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
-import { Reducer } from './reducer'
+import { Reducer as ReducerMap } from './../SimpleMap/Model/reducer'
+import { Reducer as ReducerPoints } from './reducer'
 
 const rootReducer = combineReducers({
-	MapReducer: Reducer,
+	PointsReducer: ReducerPoints,
+	MapReducer: ReducerMap,
 })
 
 type RootReducerType = typeof rootReducer

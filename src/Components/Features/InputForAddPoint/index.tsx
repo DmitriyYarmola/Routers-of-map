@@ -15,7 +15,7 @@ export const InputForAddPoint = () => {
 		(content) => {
 			dispatch(getGeoLocOfPoint(content))
 		},
-		[dispatch],
+		[dispatch]
 	)
 
 	const onKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {

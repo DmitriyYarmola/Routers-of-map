@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {GoogleMap} from 'react-google-maps'
+import { GoogleMap } from 'react-google-maps'
 import { Marker } from '../../../UI/Atoms/index'
 import { API_KEY } from '../../../../services/API/key'
 import { CoordinateType } from '../../../../services/API/API'
@@ -10,13 +10,23 @@ import GoogleMapReact from 'google-map-react'
 type PropsType = {
 	geolocation?: CoordinateType
 }
-export const SimpleMap:React.FC<PropsType> = ({geolocation}) => {
-	const points = useSelector((state: AppStateType) => state.MapReducer.points)
-	let currentPoint = useSelector((state: AppStateType) => state.MapReducer.currentPoint)
+export const SimpleMap: React.FC<PropsType> = ({ geolocation }) => {
+	const points = useSelector((state: AppStateType) => state.PointsReducer.points)
+	let currentPoint = useSelector(
+		(state: AppStateType) => state.PointsReducer.currentPoint
+	)
 	const [center, setCenter] = useState(geolocation)
 	const [zoom, setZoom] = useState(11)
-	
-	const Markers = points.map(point => <Marker  lat={point.geometry.location.lat}  lng={point.geometry.location.lng} name={point.formatted_address} color='yellow' key={point.place_id}/>)
+
+	const Markers = points.map((point) => (
+		<Marker
+			lat={point.geometry.location.lat}
+			lng={point.geometry.location.lng}
+			name={point.formatted_address}
+			color='yellow'
+			key={point.place_id}
+		/>
+	))
 
 	const getMapOptions = (maps: any) => {
 		return {
@@ -39,7 +49,6 @@ export const SimpleMap:React.FC<PropsType> = ({geolocation}) => {
 				hoverDistance={5}
 				options={getMapOptions}
 			>
-				
 				{Markers}
 			</GoogleMapReact>
 		</div>

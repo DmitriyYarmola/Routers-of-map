@@ -24,7 +24,7 @@ export const Marker: React.FC<PropsType> = ({ color, name }) => {
 				title={name}
 			/>
 			<div className='pulse' />
-			{show && <InfoWindow name={name}/>}
+			{show && <InfoWindow name={name} />}
 		</div>
 	)
 }
