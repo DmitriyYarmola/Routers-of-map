@@ -4,7 +4,7 @@ export const ERROR = 'ERROR'
 export type ActionsType = InferActionsType<typeof Actions>
 
 export const Actions = {
-	error: (payload: any) =>
+	error: (payload: string) =>
 		({
 			type: ERROR,
 			payload,

@@ -1,27 +1,32 @@
 import React, { useEffect, useCallback } from 'react'
 import { SearchLocation } from '../Features/PointsManager/SearchLocation'
 import { Points } from '../Features/PointsManager/Points'
-import './style.sass'
 import { useDispatch, useSelector } from 'react-redux'
-import { Actions } from '../Features/SimpleMap/Model/actions'
+import { Actions as ActionsMap } from '../Features/SimpleMap/Model/actions'
+import { Actions as ActionsError } from './../Features/Errors/model/actions'
 import { CoordinateType } from '../../services/API/API'
 import { AppStateType } from '../Features/Store/store'
 import { getRandomNumber } from './../Features/RandomNumber/index'
 import { Map } from '../Features/SimpleMap/Templates'
+import { message } from 'antd'
+import 'antd/dist/antd.css'
+import './style.sass'
+
 export const Page = () => {
 	const dispatch = useDispatch()
 	const geolocation = useSelector((state: AppStateType) => state.MapReducer.geolocation)
 	const points = useSelector((state: AppStateType) => state.PointsReducer.points)
-	let currentLocation = useSelector(
+	const error = useSelector((state: AppStateType) => state.ErrorReducer.error)
+
+	const currentLocation = useSelector(
 		(state: AppStateType) => state.PointsReducer.currentPoint
 	)
 	const onSetGeoloccation = useCallback(
 		(geolocation: CoordinateType) => {
-			dispatch(Actions.getGeolocation(geolocation))
+			dispatch(ActionsMap.getGeolocation(geolocation))
 		},
 		[dispatch]
 	)
-
 	useEffect(() => {
 		const success = (position: any) => {
 			let lat = position.coords.latitude
@@ -38,6 +43,14 @@ export const Page = () => {
 		if (!navigator.geolocation) alert('Geolocation is not supported by your browser')
 		else navigator.geolocation.getCurrentPosition(success, error)
 	}, [onSetGeoloccation])
+
+	useEffect(() => {
+		if (error) {
+			message.error(error)
+			dispatch(ActionsError.error(''))
+		}
+	}, [dispatch, error])
+
 	return (
 		geolocation && (
 			<div className='page_points-map'>

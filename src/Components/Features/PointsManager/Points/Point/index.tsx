@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import Cross from './../../../../Img/cross.svg'
+import Cross from './../../../../UI/Img/cross.svg'
 import './style.sass'
 import { Actions } from '../../Model/actions'
 type PropsType = {

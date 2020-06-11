@@ -40,6 +40,7 @@ export type LocationInfoType = {
 
 export type GetCoordinateOfPoint = {
 	results: LocationInfoType[]
+	status: string
 }
 
 export const PointAPI = {
@@ -50,6 +51,6 @@ export const PointAPI = {
 					.split(' ')
 					.join('+')}&key=${API_KEY}`
 			)
-			.then((response) => response.data.results)
+			.then((response) => response.data)
 	},
 }

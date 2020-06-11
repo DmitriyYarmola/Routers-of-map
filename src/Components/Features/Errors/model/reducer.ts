@@ -2,7 +2,7 @@ import { ERROR } from './actions'
 import { ActionsType } from './actions'
 
 let initialState = {
-	error: null as any | null,
+	error: null as string | null,
 }
 
 type InitialStateType = typeof initialState
