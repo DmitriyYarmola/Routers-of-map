@@ -1,52 +1,9 @@
-import React, { useState, useEffect } from 'react'
-import {
-	withGoogleMap,
-	GoogleMap,
-	withScriptjs,
-	Marker,
-	DirectionsRenderer,
-} from 'react-google-maps'
+import React from 'react'
+import { withGoogleMap, GoogleMap, withScriptjs } from 'react-google-maps'
 import { withProps, compose } from 'recompose'
 import { API_KEY } from '../../../../services/API/key'
-
-const MapDir = (props) => {
-	const [state, setState] = useState({
-		directions: null,
-		error: null,
-	})
-
-	useEffect(() => {
-		const { places, travelMode } = props
-		const waypoints = places.map((p) => ({
-			location: p.geometry.location,
-			stopover: true,
-		}))
-		const origin = waypoints.shift().location
-		const destination = waypoints.pop().location
-		const directionsService = new window.google.maps.DirectionsService()
-		directionsService.route(
-			{
-				origin: origin,
-				destination: destination,
-				travelMode: travelMode,
-				waypoints: waypoints,
-			},
-			(result, status) => {
-				setState(() => {
-					if (status === window.google.maps.DirectionsStatus.OK)
-						return { directions: result, error: null }
-					else return { directions: null, error: result }
-				})
-			}
-		)
-	}, [props])
-
-	if (state.error) {
-		return console.log(state.error)
-	}
-	return state.directions && <DirectionsRenderer directions={state.directions} />
-}
-
+import { MapDirection } from '../Organims/MapDirection'
+import { Marker } from '../Atoms/Marker'
 export const Map = compose(
 	withProps({
 		googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=geometry,drawing,places`,
@@ -56,18 +13,26 @@ export const Map = compose(
 	}),
 	withScriptjs,
 	withGoogleMap
-)((props) => (
+)(({ geolocation, currentLocation, markers, onToggleOpen, isOpen }) => (
 	<GoogleMap
-		defaultCenter={props.geolocation}
+		defaultCenter={geolocation}
 		defaultZoom={10}
-		center={props.currentLocation || props.geolocation}
+		center={currentLocation || geolocation}
 	>
-		{props.markers.map((marker) => {
+		{markers.map((marker) => {
 			const position = marker.geometry.location
-			return <Marker key={marker.place_id} position={position} />
+			return (
+				<Marker
+					key={marker.place_id}
+					position={position}
+					onClick={onToggleOpen}
+					isOpen={isOpen}
+					formatted_address={marker.formatted_address}
+				/>
+			)
 		})}
-		{props.markers.length > 1 && (
-			<MapDir places={props.markers} travelMode={window.google.maps.TravelMode.DRIVING} />
+		{markers.length > 1 && (
+			<MapDirection places={markers} travelMode={window.google.maps.TravelMode.DRIVING} />
 		)}
 	</GoogleMap>
 ))

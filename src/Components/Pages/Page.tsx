@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react'
+import React, { useEffect, useCallback, useState } from 'react'
 import { SearchLocation } from '../Features/PointsManager/SearchLocation'
 import { Points } from '../Features/PointsManager/Points'
 import { useDispatch, useSelector } from 'react-redux'
@@ -14,6 +14,7 @@ import './style.sass'
 
 export const Page = () => {
 	const dispatch = useDispatch()
+	const [isOpen, setIsOpen] = useState(false)
 	const geolocation = useSelector((state: AppStateType) => state.MapReducer.geolocation)
 	const points = useSelector((state: AppStateType) => state.PointsReducer.points)
 	const error = useSelector((state: AppStateType) => state.ErrorReducer.error)
@@ -27,6 +28,9 @@ export const Page = () => {
 		},
 		[dispatch]
 	)
+	const onToggleOpenInfoBox = () => {
+		setIsOpen(!isOpen)
+	}
 	useEffect(() => {
 		const success = (position: any) => {
 			let lat = position.coords.latitude
@@ -67,6 +71,8 @@ export const Page = () => {
 						markers={points}
 						currentLocation={currentLocation?.geometry.location}
 						geolocation={geolocation}
+						isOpen={isOpen}
+						onToggleOpen={onToggleOpenInfoBox}
 					/>
 				</div>
 			</div>
