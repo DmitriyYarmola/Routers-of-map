@@ -22,10 +22,6 @@ export const MapDirection: React.FC<PropsType> = ({ places, travelMode }) => {
 		const origin = waypoints.shift()!.location
 		const destination = waypoints.pop()!.location
 		const directionsService = new window.google.maps.DirectionsService()
-		new window.google.maps.InfoWindow({
-			content: 'red',
-		})
-		// infoWindow.open(Map)
 		directionsService.route(
 			{
 				origin: origin,
@@ -52,7 +48,19 @@ export const MapDirection: React.FC<PropsType> = ({ places, travelMode }) => {
 	return (
 		state.directions && (
 			<>
-				<DirectionsRenderer directions={state.directions!} />
+				<DirectionsRenderer
+					directions={state.directions!}
+					options={{
+						draggable: true,
+						polylineOptions: {
+							strokeOpacity: 0.5,
+							strokeColor: '#FF0000',
+						},
+						markerOptions: {
+							draggable: true,
+						},
+					}}
+				/>
 			</>
 		)
 	)
