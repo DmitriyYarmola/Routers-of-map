@@ -1,4 +1,4 @@
-import { ADD_POINT, DELETE_POINT } from './actions'
+import { ADD_POINT, DELETE_POINT, MOVED_POINTS, CHANGED_POSITION_POINTS } from './actions'
 import { ActionsType } from './actions'
 import { LocationInfoType } from '../../../../services/API/API'
 
@@ -22,6 +22,22 @@ export const Reducer = (state = initialState, action: ActionsType): InitialState
 				...state,
 				points: [...state.points.filter((point) => point.place_id !== action.payload)],
 			}
+		case MOVED_POINTS:
+			return {
+				...state,
+				points: action.payload,
+			}
+		case CHANGED_POSITION_POINTS:
+			return {
+				...state,
+				points: [
+					...state.points.map((item) => {
+						if (item.place_id === action.id) return action.payload
+						else return item
+					}),
+				],
+			}
+
 		default:
 			return state
 	}

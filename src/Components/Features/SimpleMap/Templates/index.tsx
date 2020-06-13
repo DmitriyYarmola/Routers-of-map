@@ -34,6 +34,7 @@ export const Map = compose<PropsType, PropsType>(
 				markers.length <= 1 && (
 					<Marker
 						key={marker.place_id}
+						marker={marker}
 						position={position}
 						onClick={onToggleOpen}
 						isOpen={isOpen}

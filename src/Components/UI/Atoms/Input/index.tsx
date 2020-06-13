@@ -7,7 +7,7 @@ type PropsType = {
 	placeholder: string
 	helperContent: string
 	value: string
-	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 	onKeyPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void
 }
 

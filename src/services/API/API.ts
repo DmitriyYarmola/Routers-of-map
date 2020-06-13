@@ -1,13 +1,5 @@
 import { API_KEY } from './key'
 import axios from 'axios'
-// const instance = axios.create({
-// 	withCredentials: true,
-// 	baseURL: 'https://maps.googleapis.com/maps/api/geocode',
-// 	headers: {
-// 		"API-KEY": API_KEY,
-// 		'Content-Type': 'application/json'
-// 	},
-// })
 
 type GorizonteType = {
 	northeast: CoordinateType
@@ -37,12 +29,16 @@ export type LocationInfoType = {
 	place_id: string
 	types: Array<string>
 }
+type PlusCodeType = {
+	compound_code: string
+	global_code: string
+}
 
 export type GetCoordinateOfPoint = {
+	plus_code?: PlusCodeType
 	results: LocationInfoType[]
 	status: string
 }
-
 export const PointAPI = {
 	getCoordinateOfPoint: (location: string) => {
 		return axios
@@ -50,6 +46,13 @@ export const PointAPI = {
 				`https://maps.googleapis.com/maps/api/geocode/json?address=${location
 					.split(' ')
 					.join('+')}&key=${API_KEY}`
+			)
+			.then((response) => response.data)
+	},
+	getAddressOfPoint: (coordiante: CoordinateType) => {
+		return axios
+			.get<GetCoordinateOfPoint>(
+				`https://maps.googleapis.com/maps/api/geocode/json?latlng=${coordiante.lat},${coordiante.lng}&key=${API_KEY}`
 			)
 			.then((response) => response.data)
 	},

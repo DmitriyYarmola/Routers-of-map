@@ -1,40 +1,20 @@
-import React, { useState, useCallback } from 'react'
+import React from 'react'
 import { useDispatch } from 'react-redux'
-import { Input } from '../../../UI/Atoms/index'
 import { getGeoLocOfPoint } from '../Model/thunks'
-
+import GooglePlacesAutocomplete from 'react-google-places-autocomplete'
+import 'react-google-places-autocomplete/dist/index.min.css'
+import './style.sass'
+type AddressType = {
+	description: string
+}
 export const SearchLocation = () => {
-	const [content, setContent] = useState('')
 	const dispatch = useDispatch()
-
-	const onChangeContent = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setContent(e.currentTarget.value)
-	}
-
-	const onGetGeoLocOfPoint = useCallback(
-		(content) => {
-			dispatch(getGeoLocOfPoint(content))
-		},
-		[dispatch]
-	)
-
-	const onKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-		if (e.key === 'Enter') {
-			onGetGeoLocOfPoint(content)
-			setContent('')
-		}
-	}
+	const onKeyPress = ({ description }: AddressType) =>
+		dispatch(getGeoLocOfPoint(description))
 
 	return (
-		<Input
-			id={'search'}
-			type={'text'}
-			className={'search-place'}
-			placeholder={'Adress'}
-			helperContent={'Input adress'}
-			onChange={onChangeContent}
-			value={content}
-			onKeyPress={onKeyPress}
-		/>
+		<div className='search-location'>
+			<GooglePlacesAutocomplete onSelect={onKeyPress} />
+		</div>
 	)
 }
