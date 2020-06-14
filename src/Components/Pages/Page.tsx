@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useState } from 'react'
+import React, { useEffect, useCallback } from 'react'
 import { SearchLocation } from '../Features/PointsManager/SearchLocation'
 import { Points } from '../Features/PointsManager/Points/Templates'
 import { useDispatch, useSelector } from 'react-redux'
@@ -11,14 +11,16 @@ import { Map } from '../Features/SimpleMap/Templates'
 import { message } from 'antd'
 import 'antd/dist/antd.css'
 import './style.sass'
+import { Label } from '../UI/Atoms/Label'
 
 export const Page = () => {
 	const dispatch = useDispatch()
-	const [isOpen, setIsOpen] = useState(false)
 	const geolocation = useSelector((state: AppStateType) => state.MapReducer.geolocation)
 	const points = useSelector((state: AppStateType) => state.PointsReducer.points)
 	const error = useSelector((state: AppStateType) => state.ErrorReducer.error)
-
+	const distance = useSelector(
+		(state: AppStateType) => state.MapReducer.distanceBetweenPoints
+	)
 	const currentLocation = useSelector(
 		(state: AppStateType) => state.PointsReducer.currentPoint
 	)
@@ -28,9 +30,6 @@ export const Page = () => {
 		},
 		[dispatch]
 	)
-	const onToggleOpenInfoBox = () => {
-		setIsOpen(!isOpen)
-	}
 	useEffect(() => {
 		const success = (position: any) => {
 			let lat = position.coords.latitude
@@ -62,6 +61,9 @@ export const Page = () => {
 					<div className='add-point'>
 						<SearchLocation />
 					</div>
+					<div className='label-distance'>
+						{distance && <Label distance={distance} />}
+					</div>
 					<div className='list-point'>
 						<Points />
 					</div>
@@ -71,8 +73,6 @@ export const Page = () => {
 						markers={points}
 						currentLocation={currentLocation?.geometry.location}
 						geolocation={geolocation}
-						isOpen={isOpen}
-						onToggleOpen={onToggleOpenInfoBox}
 					/>
 				</div>
 			</div>

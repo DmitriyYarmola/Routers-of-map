@@ -5,10 +5,6 @@ type GorizonteType = {
 	northeast: CoordinateType
 	southwest: CoordinateType
 }
-export type CoordinateType = {
-	lat: number
-	lng: number
-}
 
 type GeometryType = {
 	bounds: GorizonteType
@@ -22,6 +18,17 @@ type AddressComponents = {
 	short_name: string
 	types: Array<string>
 }
+
+type PlusCodeType = {
+	compound_code: string
+	global_code: string
+}
+
+export type CoordinateType = {
+	lat: number
+	lng: number
+}
+
 export type LocationInfoType = {
 	address_components: Array<AddressComponents>
 	formatted_address: string
@@ -29,16 +36,13 @@ export type LocationInfoType = {
 	place_id: string
 	types: Array<string>
 }
-type PlusCodeType = {
-	compound_code: string
-	global_code: string
-}
 
 export type GetCoordinateOfPoint = {
 	plus_code?: PlusCodeType
 	results: LocationInfoType[]
 	status: string
 }
+
 export const PointAPI = {
 	getCoordinateOfPoint: (location: string) => {
 		return axios

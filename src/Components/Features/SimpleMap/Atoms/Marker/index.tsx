@@ -1,28 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Marker as MarkerMap } from 'react-google-maps'
 import { InfoWindow } from 'react-google-maps'
-import { useSelector, useDispatch } from 'react-redux'
-import { AppStateType } from '../../../Store/store'
+import { useDispatch } from 'react-redux'
 import { LocationInfoType } from '../../../../../services/API/API'
 import { getAddressOfPoint } from '../../../PointsManager/Model/thunks'
-
 type PropsType = {
 	key: string
 	position: any
-	isOpen: boolean
 	formatted_address: string
 	marker: LocationInfoType
-	onClick: () => void
+	numberMarker: number
 }
 export const Marker: React.FC<PropsType> = ({
 	position,
-	onClick,
-	isOpen,
 	formatted_address,
 	marker,
+	numberMarker,
 	...props
 }) => {
-	const points = useSelector((state: AppStateType) => state.PointsReducer.points)
+	const [isOpen, setIsOpen] = useState(false)
 	const dispatch = useDispatch()
 	const onDragEnd = (e: google.maps.MouseEvent) => {
 		const lat = e.latLng.lat()
@@ -30,15 +26,24 @@ export const Marker: React.FC<PropsType> = ({
 		const changedPoint = { lat, lng }
 		dispatch(getAddressOfPoint(changedPoint, marker.place_id))
 	}
+	const onToggleOpenInfoBox = () => {
+		setIsOpen(!isOpen)
+	}
 	return (
 		<MarkerMap
 			position={position}
-			onClick={onClick}
+			onClick={onToggleOpenInfoBox}
 			draggable={true}
 			onDragEnd={onDragEnd}
+			label={{
+				text: `${numberMarker + 1}`,
+				color: 'black',
+				fontSize: '16px',
+				fontWeight: 'bold',
+			}}
 			{...props}
 		>
-			{isOpen && points.length <= 1 && (
+			{isOpen && (
 				<InfoWindow>
 					<div>{formatted_address}</div>
 				</InfoWindow>

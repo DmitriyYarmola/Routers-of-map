@@ -8,6 +8,7 @@ import { reorder } from '../../../../lib/reorder'
 
 export const Points = () => {
 	const points = useSelector((state: AppStateType) => state.PointsReducer.points)
+	console.log(points)
 	const dispatch = useDispatch()
 
 	const onDragStart = () => {

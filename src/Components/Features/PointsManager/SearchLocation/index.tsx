@@ -9,8 +9,9 @@ type AddressType = {
 }
 export const SearchLocation = () => {
 	const dispatch = useDispatch()
-	const onKeyPress = ({ description }: AddressType) =>
+	const onKeyPress = ({ description }: AddressType) => {
 		dispatch(getGeoLocOfPoint(description))
+	}
 
 	return (
 		<div className='search-location'>

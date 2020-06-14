@@ -1,9 +1,10 @@
-import { GET_GEOLOCATION } from './actions'
+import { GET_GEOLOCATION, DISPTANCE_BETWEEN_POINTS } from './actions'
 import { ActionsType } from './actions'
 import { CoordinateType } from './../../../../services/API/API'
 
 let initialState = {
 	geolocation: null as CoordinateType | null,
+	distanceBetweenPoints: null as number | null,
 }
 
 type InitialStateType = typeof initialState
@@ -14,6 +15,11 @@ export const Reducer = (state = initialState, action: ActionsType): InitialState
 			return {
 				...state,
 				geolocation: action.payload,
+			}
+		case DISPTANCE_BETWEEN_POINTS:
+			return {
+				...state,
+				distanceBetweenPoints: action.payload,
 			}
 		default:
 			return state

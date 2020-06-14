@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import { LocationInfoType } from '../../../../../services/API/API'
-import { DirectionsRenderer } from 'react-google-maps'
+import { Polyline } from 'react-google-maps'
+import { getDistance } from '../../../../lib/getDistance'
+import { useDispatch } from 'react-redux'
+import { Actions } from '../../Model/actions'
 
 type PropsType = {
 	places: LocationInfoType[]
 	travelMode: any
 }
 export const MapDirection: React.FC<PropsType> = ({ places, travelMode }) => {
-	const [state, setState] = useState({
-		directions: null,
-		error: null,
-	})
+	const [coordinate, setCoordinate] = useState<any>()
 
+	const disptach = useDispatch()
 	useEffect(() => {
 		const waypoints = places.map((p) => ({
 			location: p.geometry.location,
@@ -30,36 +31,24 @@ export const MapDirection: React.FC<PropsType> = ({ places, travelMode }) => {
 				waypoints: waypoints,
 			},
 			(result: any, status: any) => {
-				setState(() => {
-					if (status === window.google.maps.DirectionsStatus.OK)
-						return { directions: result, error: null }
-					else return { directions: null, error: result }
-				})
+				let dis = getDistance(result.routes[0].legs)
+				disptach(Actions.setDistanceBetweenPoints(dis))
+				const coords = result.routes[0].overview_path
+				setCoordinate(coords)
 			}
 		)
-	}, [places, travelMode])
-
-	if (state.error) {
-		console.log(state.error)
-	}
+	}, [places, travelMode, disptach])
 
 	return (
-		state.directions && (
-			<>
-				<DirectionsRenderer
-					directions={state.directions!}
-					options={{
-						draggable: true,
-						polylineOptions: {
-							strokeOpacity: 0.5,
-							strokeColor: '#FF0000',
-						},
-						markerOptions: {
-							draggable: true,
-						},
-					}}
-				/>
-			</>
-		)
+		<Polyline
+			path={coordinate}
+			options={{
+				strokeColor: '#ff2343',
+				strokeOpacity: 0.8,
+				strokeWeight: 5,
+				clickable: true,
+				geodesic: true,
+			}}
+		/>
 	)
 }
