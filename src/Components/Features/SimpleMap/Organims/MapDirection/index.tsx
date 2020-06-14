@@ -3,7 +3,9 @@ import { LocationInfoType } from '../../../../../services/API/API'
 import { Polyline } from 'react-google-maps'
 import { getDistance } from '../../../../lib/getDistance'
 import { useDispatch } from 'react-redux'
-import { Actions } from '../../Model/actions'
+import { Actions as ActionsPoints } from '../../Model/actions'
+import { Actions as ActionsErrors } from './../../../Errors/model/actions'
+import { Codes } from '../../../Errors/codes'
 
 type PropsType = {
 	places: LocationInfoType[]
@@ -31,10 +33,15 @@ export const MapDirection: React.FC<PropsType> = ({ places, travelMode }) => {
 				waypoints: waypoints,
 			},
 			(result: any, status: any) => {
-				let dis = getDistance(result.routes[0].legs)
-				disptach(Actions.setDistanceBetweenPoints(dis))
-				const coords = result.routes[0].overview_path
-				setCoordinate(coords)
+				console.log(result)
+				// let dis = 0
+				if (result.status === Codes.OK) {
+					let dis = getDistance(result.routes[0].legs)
+					disptach(ActionsPoints.setDistanceBetweenPoints(dis))
+					const coords = result.routes[0].overview_path
+					setCoordinate(coords)
+				} else if (result.status === Codes.NoRsult)
+					disptach(ActionsErrors.error('The route is broken. Please, refresh the page.'))
 			}
 		)
 	}, [places, travelMode, disptach])

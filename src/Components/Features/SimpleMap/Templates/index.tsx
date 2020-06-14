@@ -5,6 +5,7 @@ import { API_KEY } from '../../../../services/API/key'
 import { MapDirection } from '../Organims/MapDirection'
 import { Marker } from '../Atoms/Marker'
 import { CoordinateType, LocationInfoType } from '../../../../services/API/API'
+import { getCenterBetweenPoints } from '../../../lib/getCenterBetweenPoints'
 
 type PropsType = {
 	geolocation: CoordinateType
@@ -24,7 +25,12 @@ export const Map = compose<PropsType, PropsType>(
 	<GoogleMap
 		defaultCenter={geolocation}
 		defaultZoom={10}
-		center={currentLocation || geolocation}
+		center={
+			markers.length < 1
+				? currentLocation || geolocation
+				: getCenterBetweenPoints(markers)
+		}
+		zoom={markers.length > 1 ? 5 : 10}
 	>
 		{markers.map((marker, index) => {
 			const position = marker.geometry.location
@@ -33,7 +39,6 @@ export const Map = compose<PropsType, PropsType>(
 					key={marker.place_id}
 					marker={marker}
 					position={position}
-					formatted_address={marker.formatted_address}
 					numberMarker={index}
 				/>
 			)

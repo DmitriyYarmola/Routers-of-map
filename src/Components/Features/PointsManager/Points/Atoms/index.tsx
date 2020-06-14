@@ -1,7 +1,7 @@
 import React from 'react'
 import { LocationInfoType } from '../../../../../services/API/API'
 import { Draggable } from 'react-beautiful-dnd'
-import Cross from './../../../../UI/Img/cross.svg'
+import Cross from './../../../../../Img/cross.svg'
 import { Actions } from '../../Model/actions'
 import { useDispatch } from 'react-redux'
 import './style.sass'
