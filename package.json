@@ -2,6 +2,7 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://gitname.github.io/react-gh-pages",
   "dependencies": {
     "@react-google-maps/api": "^2.0.0-alpha",
     "@testing-library/jest-dom": "^4.2.4",
@@ -18,6 +19,7 @@
     "@types/recompose": "^0.30.7",
     "antd": "^4.3.3",
     "axios": "^0.19.2",
+    "gh-pages": "^3.0.0",
     "google-map-react": "^1.1.7",
     "react": "^16.13.1",
     "react-beautiful-dnd": "^13.0.0",
@@ -37,7 +39,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint src -c .eslintrc.json --ext ts,tsx"
+    "lint": "eslint src -c .eslintrc.json --ext ts,tsx",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
