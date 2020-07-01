@@ -2,7 +2,7 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://gitname.github.io/react-gh-pages",
+  "homepage": "https://enemydead.github.io/Routers-of-map/",
   "dependencies": {
     "@react-google-maps/api": "^2.0.0-alpha",
     "@testing-library/jest-dom": "^4.2.4",
