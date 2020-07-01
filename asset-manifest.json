@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/Routers-of-map/static/css/main.a4b18de8.chunk.css",
-    "main.js": "/Routers-of-map/static/js/main.b2ed2b57.chunk.js",
-    "main.js.map": "/Routers-of-map/static/js/main.b2ed2b57.chunk.js.map",
-    "runtime-main.js": "/Routers-of-map/static/js/runtime-main.3ef25d09.js",
-    "runtime-main.js.map": "/Routers-of-map/static/js/runtime-main.3ef25d09.js.map",
-    "static/css/2.4446f115.chunk.css": "/Routers-of-map/static/css/2.4446f115.chunk.css",
-    "static/js/2.f41ba4c8.chunk.js": "/Routers-of-map/static/js/2.f41ba4c8.chunk.js",
-    "static/js/2.f41ba4c8.chunk.js.map": "/Routers-of-map/static/js/2.f41ba4c8.chunk.js.map",
-    "index.html": "/Routers-of-map/index.html",
-    "precache-manifest.2a1b46419ec068fe44b0f63de4206398.js": "/Routers-of-map/precache-manifest.2a1b46419ec068fe44b0f63de4206398.js",
-    "service-worker.js": "/Routers-of-map/service-worker.js",
-    "static/css/2.4446f115.chunk.css.map": "/Routers-of-map/static/css/2.4446f115.chunk.css.map",
-    "static/css/main.a4b18de8.chunk.css.map": "/Routers-of-map/static/css/main.a4b18de8.chunk.css.map",
-    "static/js/2.f41ba4c8.chunk.js.LICENSE.txt": "/Routers-of-map/static/js/2.f41ba4c8.chunk.js.LICENSE.txt",
-    "static/media/cross.svg": "/Routers-of-map/static/media/cross.e3380abb.svg"
+    "main.css": "/react-gh-pages/static/css/main.0559c2fb.chunk.css",
+    "main.js": "/react-gh-pages/static/js/main.81416551.chunk.js",
+    "main.js.map": "/react-gh-pages/static/js/main.81416551.chunk.js.map",
+    "runtime-main.js": "/react-gh-pages/static/js/runtime-main.39256a51.js",
+    "runtime-main.js.map": "/react-gh-pages/static/js/runtime-main.39256a51.js.map",
+    "static/css/2.4446f115.chunk.css": "/react-gh-pages/static/css/2.4446f115.chunk.css",
+    "static/js/2.08501593.chunk.js": "/react-gh-pages/static/js/2.08501593.chunk.js",
+    "static/js/2.08501593.chunk.js.map": "/react-gh-pages/static/js/2.08501593.chunk.js.map",
+    "index.html": "/react-gh-pages/index.html",
+    "precache-manifest.19c6a2fa33832097df67ed42ab9ef4ff.js": "/react-gh-pages/precache-manifest.19c6a2fa33832097df67ed42ab9ef4ff.js",
+    "service-worker.js": "/react-gh-pages/service-worker.js",
+    "static/css/2.4446f115.chunk.css.map": "/react-gh-pages/static/css/2.4446f115.chunk.css.map",
+    "static/css/main.0559c2fb.chunk.css.map": "/react-gh-pages/static/css/main.0559c2fb.chunk.css.map",
+    "static/js/2.08501593.chunk.js.LICENSE.txt": "/react-gh-pages/static/js/2.08501593.chunk.js.LICENSE.txt",
+    "static/media/cross.svg": "/react-gh-pages/static/media/cross.e3380abb.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.3ef25d09.js",
+    "static/js/runtime-main.39256a51.js",
     "static/css/2.4446f115.chunk.css",
-    "static/js/2.f41ba4c8.chunk.js",
-    "static/css/main.a4b18de8.chunk.css",
-    "static/js/main.b2ed2b57.chunk.js"
+    "static/js/2.08501593.chunk.js",
+    "static/css/main.0559c2fb.chunk.css",
+    "static/js/main.81416551.chunk.js"
   ]
 }
