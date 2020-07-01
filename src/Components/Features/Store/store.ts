@@ -1,4 +1,4 @@
-import { combineReducers, createStore, applyMiddleware } from 'redux'
+import { combineReducers, createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import { Reducer as ReducerMap } from '../SimpleMap/Model/reducer'
 import { Reducer as ReducerPoints } from '../PointsManager/Model/reducer'
